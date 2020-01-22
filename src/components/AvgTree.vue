@@ -17,11 +17,17 @@ export default {
     return {};
   },
   methods: {
+    addNode: function(node) {
+      // eslint-disable-next-line no-console
+      console.log("addNode=>", node);
+    },
+    deleteNode: function(node) {
+      // eslint-disable-next-line no-console
+      console.log("deleteNode=>", node);
+    },
     renderContent: function(h, data) {
-      // eslint-disable-next-line no-console
-      // console.log(h);
-      // eslint-disable-next-line no-console
-      console.log(data);
+      // eslint-disable-next-line no-debugger
+      debugger;
       return (
         <span>
           {data.label}
@@ -29,8 +35,18 @@ export default {
             type="primary"
             circle
             icon="el-icon-circle-plus"
+            onclick={() => {
+              this.addNode(data);
+            }}
           ></el-button>
-          <el-button type="danger" circle icon="el-icon-delete"></el-button>
+          <el-button
+            type="danger"
+            circle
+            icon="el-icon-delete"
+            onclick={() => {
+              this.deleteNode(data);
+            }}
+          ></el-button>
         </span>
       );
     }
