@@ -29,17 +29,20 @@ export default {
     return {
       editVisible: false,
       sourceData: null,
-      theEditNode: {},
       theEditData: {}
     };
   },
   methods: {
     handleEditNode: function() {
       // eslint-disable-next-line no-console
-      console.log("handleEditNode", this.sourceData[this.theEditNode.id]);
-      this.$set(this.sourceData, this.theEditNode.id, this.theEditData);
+      console.log("handleEditNode", this.sourceData[this.theEditData.id]);
+      this.$set(this.sourceData, this.theEditData.id, this.theEditData);
       // eslint-disable-next-line no-console
-      console.log("handleEditNode", this.sourceData[this.theEditNode.id]);
+      console.log("handleEditNode", this.sourceData[this.theEditData.id]);
+      let id = "tree_node_" + this.theEditData.id;
+      document.getElementById(id).innerHTML = this.sourceData[
+        this.theEditData.id
+      ].label;
       this.editVisible = false;
     },
     addNode: function(node) {
@@ -58,9 +61,10 @@ export default {
       if (this.sourceData == null) {
         this.$set(this, "sourceData", JSON.parse(JSON.stringify(this.source)));
       }
+      let id = "tree_node_" + tree.id;
       return (
         <span>
-          {this.sourceData[tree.id].label}
+          <span id={id}>{this.sourceData[tree.id].label}</span>
           <br />
           <el-button
             type="primary"
