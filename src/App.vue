@@ -2,18 +2,24 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <tree :tree="tree" :source="source" @change="nodeValueChange"></tree>
+    <!-- <tree :tree="tree" :source="source" @change="nodeValueChange"></tree> -->
+    <my-tree :json="tree">
+      <template slot-scope="node">{{node.node}}</template>
+    </my-tree>
   </div>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
 import Tree from "./components/AvgTree.vue";
+import MyTree from "./components/MyTree.vue";
 
 export default {
   name: "app",
   components: {
-    Tree
+    // eslint-disable-next-line vue/no-unused-components
+    Tree,
+    MyTree
   },
   data() {
     return {
